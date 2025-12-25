@@ -1,0 +1,1559 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="DataSense - AI Analytics Platform" />
+        <meta
+            property="og:description"
+            content="Enterprise AI-powered data analysis platform. Upload datasets, get instant predictions and insights."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:image"
+            content="https://replit.com/public/images/opengraph.png"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@replit" />
+        <meta
+            name="twitter:title"
+            content="DataSense - AI Analytics Platform"
+        />
+        <meta
+            name="twitter:description"
+            content="Enterprise AI-powered data analysis platform."
+        />
+        <meta
+            name="twitter:image"
+            content="https://replit.com/public/images/opengraph.png"
+        />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #1e40af;
+    --primary-light: #3b82f6;
+    --accent: #0ea5e9;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --card-bg: #ffffff;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    
+    --border: #e2e8f0;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    --radius: 8px;
+    --radius-lg: 12px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Navigation */
+.navbar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-light);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.nav-status {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 64px);
+}
+
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-light);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.hero h1 span {
+    background: linear-gradient(to right, var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Features Section */
+.features {
+    padding: 4rem 2rem;
+    background: var(--bg-primary);
+}
+
+.features-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.feature-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--primary-light);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Upload Zone */
+.upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    padding: 4rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2rem 0;
+}
+
+.upload-zone:hover {
+    border-color: var(--primary-light);
+    background: rgba(59, 130, 246, 0.02);
+}
+
+.upload-zone.dragover {
+    border-color: var(--primary-light);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.upload-zone h3 {
+    margin-bottom: 0.5rem;
+}
+
+.upload-zone p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* File Info */
+.file-info {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.file-info.hidden {
+    display: none;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+}
+
+.file-icon {
+    font-size: 1.5rem;
+}
+
+.file-details {
+    flex: 1;
+}
+
+.file-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.file-size {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.btn-remove:hover {
+    color: var(--danger);
+}
+
+/* Form */
+.form-group {
+    margin: 1.5rem 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+select, input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+select:focus, input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+select:disabled {
+    background-color: var(--bg-secondary);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: var(--primary-light);
+    color: white;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--bg-secondary);
+}
+
+.btn.w-full {
+    width: 100%;
+    justify-content: center;
+}
+
+.icon-arrow {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Results Header */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.results-header h2 {
+    font-size: 2rem;
+}
+
+.results-header p {
+    color: var(--text-secondary);
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+}
+
+.badge-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.metric-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
+}
+
+.metric-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+
+.metric-icon {
+    font-size: 1.75rem;
+}
+
+.metric-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Charts Section */
+.charts-section {
+    margin: 3rem 0;
+}
+
+.chart-container {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.chart-container h3 {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+canvas {
+    max-height: 300px;
+}
+
+/* Insights Grid */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.prediction-card, .recommendations-card, .statistics-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.prediction-card {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    color: white;
+    border: none;
+}
+
+.prediction-header {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.prediction-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.prediction-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    margin: 0.5rem 0;
+}
+
+.prediction-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.confidence-bar {
+    background: rgba(0, 0, 0, 0.2);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.confidence-fill {
+    background: var(--accent);
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.risk-indicator {
+    background: rgba(0, 0, 0, 0.15);
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.recommendations-card h3, .statistics-card h3 {
+    margin-bottom: 1rem;
+}
+
+#recommendations-list {
+    list-style: none;
+}
+
+#recommendations-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+#recommendations-list li:before {
+    content: "•";
+    color: var(--accent);
+    font-weight: bold;
+    min-width: 0.5rem;
+}
+
+.warning-item {
+    background-color: #fef3c7 !important;
+    border-left: 4px solid #f59e0b !important;
+    padding: 0.75rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 4px !important;
+    color: #92400e !important;
+    font-weight: 500 !important;
+}
+
+.warning-item:before {
+    content: "⚠️";
+    color: #f59e0b !important;
+    font-weight: bold !important;
+    min-width: 1rem !important;
+}
+
+.validation-error {
+    background-color: #fee2e2 !important;
+    border-left: 4px solid #ef4444 !important;
+    padding: 0.75rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 4px !important;
+    color: #dc2626 !important;
+    font-weight: 500 !important;
+}
+
+.validation-error:before {
+    content: "❌";
+    color: #ef4444 !important;
+    font-weight: bold !important;
+    min-width: 1rem !important;
+}
+
+.validation-success {
+    background-color: #d1fae5 !important;
+    border-left: 4px solid #10b981 !important;
+    padding: 0.75rem !important;
+    margin-bottom: 1rem !important;
+    border-radius: 4px !important;
+    color: #047857 !important;
+    font-weight: 500 !important;
+}
+
+.validation-success:before {
+    content: "✅";
+    color: #10b981 !important;
+    font-weight: bold !important;
+    min-width: 1rem !important;
+}
+
+.validation-section {
+    margin-bottom: 2rem;
+}
+
+.validation-section h4 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.stats-table {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    color: var(--text-primary);
+}
+
+/* Loading */
+.loading-box {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border);
+    border-top-color: var(--primary-light);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-box h2 {
+    margin: 1rem 0;
+}
+
+.loading-box p {
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .hero {
+        padding: 3rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .results-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-buttons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-row {
+        grid-template-columns: 1fr;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+        </style>
+        <title>DataSense Analytics</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- Navigation -->
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <div class="logo-icon">D</div>
+                        <span>DataSense</span>
+                    </div>
+                    <div class="nav-links">
+                        <span id="nav-status" class="nav-status"></span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Landing Page -->
+                <div id="landing-page" class="page active">
+                    <section class="hero">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                Enterprise AI Analytics Platform
+                            </div>
+                            <h1>
+                                Transform Data into
+                                <span>Actionable Intelligence</span>
+                            </h1>
+                            <p>
+                                Upload your datasets and let our advanced AI
+                                models generate insights, predictions, and
+                                strategic recommendations in seconds.
+                            </p>
+                            <button id="start-btn" class="btn btn-primary">
+                                Start Analysis
+                                <svg
+                                    class="icon-arrow"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="features">
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3>Instant Processing</h3>
+                                <p>
+                                    Process millions of rows in seconds with our
+                                    distributed compute engine.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔒</div>
+                                <h3>Enterprise Security</h3>
+                                <p>
+                                    Bank-grade encryption. Compliant with GDPR,
+                                    SOC2, and HIPAA standards.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3>Visual Storytelling</h3>
+                                <p>
+                                    Interactive charts and dashboards that
+                                    communicate insights effectively.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page">
+                    <!-- Upload Step -->
+                    <div id="upload-step" class="step active">
+                        <div class="container">
+                            <h2>Upload Dataset</h2>
+                            <p>
+                                Drag and drop your CSV or Excel file to begin
+                                AI-powered analysis.
+                            </p>
+
+                            <div id="upload-zone" class="upload-zone">
+                                <div class="upload-icon">📤</div>
+                                <h3>Click to upload or drag and drop</h3>
+                                <p>CSV, Excel files up to 50MB</p>
+                                <input
+                                    type="file"
+                                    id="file-input"
+                                    accept=".csv,.xlsx,.xls"
+                                    hidden
+                                />
+                            </div>
+
+                            <div id="file-info" class="file-info hidden">
+                                <div class="file-item">
+                                    <div class="file-icon">📋</div>
+                                    <div class="file-details">
+                                        <div
+                                            class="file-name"
+                                            id="file-name"
+                                        ></div>
+                                        <div
+                                            class="file-size"
+                                            id="file-size"
+                                        ></div>
+                                    </div>
+                                    <button
+                                        id="remove-file-btn"
+                                        class="btn-remove"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Select Target Variable</label>
+                                    <select id="target-select">
+                                        <option value="">
+                                            Choose a column...
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <button
+                                    id="analyze-btn"
+                                    class="btn btn-primary w-full"
+                                    disabled
+                                >
+                                    Run Analysis
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Step -->
+                    <div id="results-step" class="step">
+                        <div class="container">
+                            <div class="results-header">
+                                <div>
+                                    <h2>Analysis Results</h2>
+                                    <p>
+                                        Target Variable:
+                                        <span id="target-display"></span>
+                                    </p>
+                                </div>
+                                <div class="header-buttons">
+                                    <span
+                                        id="accuracy-badge"
+                                        class="badge badge-success"
+                                    ></span>
+                                    <button
+                                        id="new-analysis-btn"
+                                        class="btn btn-secondary"
+                                    >
+                                        ↻ New Analysis
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Metrics Grid -->
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-icon">📊</div>
+                                    <div>
+                                        <div class="metric-label">
+                                            Total Rows
+                                        </div>
+                                        <div
+                                            class="metric-value"
+                                            id="metric-rows"
+                                        >
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon">📈</div>
+                                    <div>
+                                        <div class="metric-label">
+                                            Columns Analyzed
+                                        </div>
+                                        <div
+                                            class="metric-value"
+                                            id="metric-cols"
+                                        >
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon">⚠️</div>
+                                    <div>
+                                        <div class="metric-label">
+                                            Missing Values
+                                        </div>
+                                        <div
+                                            class="metric-value"
+                                            id="metric-missing"
+                                        >
+                                            0%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon">✓</div>
+                                    <div>
+                                        <div class="metric-label">
+                                            Model Performance
+                                        </div>
+                                        <div
+                                            class="metric-value"
+                                            id="metric-confidence"
+                                        >
+                                            0%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Charts Section -->
+                            <div class="charts-section">
+                                <div class="chart-container">
+                                    <h3>Trend Analysis</h3>
+                                    <canvas id="line-chart"></canvas>
+                                </div>
+                                <div class="chart-row">
+                                    <div class="chart-container">
+                                        <h3>Distribution</h3>
+                                        <canvas id="bar-chart"></canvas>
+                                    </div>
+                                    <div class="chart-container">
+                                        <h3>Segments</h3>
+                                        <canvas id="pie-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Insights Section -->
+                            <div class="insights-grid">
+                                <div class="prediction-card">
+                                    <div class="prediction-header">
+                                        <span class="prediction-badge"
+                                            >🧠 AI Prediction</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="prediction-value"
+                                        id="predicted-value"
+                                    >
+                                        0
+                                    </div>
+                                    <p class="prediction-label">
+                                        Predicted Target Impact
+                                    </p>
+                                    <div class="confidence-bar">
+                                        <div
+                                            id="confidence-fill"
+                                            class="confidence-fill"
+                                            style="width: 0%"
+                                        ></div>
+                                    </div>
+                                    <div class="risk-indicator">
+                                        <span>⚠️ Risk Level:</span>
+                                        <strong id="risk-level">Low</strong>
+                                    </div>
+                                </div>
+
+                                <div class="recommendations-card">
+                                    <h3>💡 Strategic Recommendations</h3>
+                                    <ul id="recommendations-list"></ul>
+                                </div>
+
+                                <div class="statistics-card">
+                                    <h3>📊 Key Statistics</h3>
+                                    <div
+                                        class="stats-table"
+                                        id="stats-table"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loading-step" class="step">
+                        <div class="container">
+                            <div class="loading-box">
+                                <div class="spinner"></div>
+                                <h2>Analyzing Your Data</h2>
+                                <p id="loading-message">
+                                    Processing your dataset...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Chart.js library for rendering charts -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+        <script>
+            // API Configuration
+// API Configuration
+const API_BASE = "http://localhost:8080"; // Backend running on port 8080
+ // Adjust to your backend URL
+let charts = {};
+
+// DOM Elements
+const app = {
+    landingPage: document.getElementById('landing-page'),
+    dashboardPage: document.getElementById('dashboard-page'),
+    uploadStep: document.getElementById('upload-step'),
+    resultsStep: document.getElementById('results-step'),
+    loadingStep: document.getElementById('loading-step'),
+    
+    // Buttons
+    startBtn: document.getElementById('start-btn'),
+    analyzeBtn: document.getElementById('analyze-btn'),
+    newAnalysisBtn: document.getElementById('new-analysis-btn'),
+    
+    // File Upload
+    uploadZone: document.getElementById('upload-zone'),
+    fileInput: document.getElementById('file-input'),
+    fileInfo: document.getElementById('file-info'),
+    fileName: document.getElementById('file-name'),
+    fileSize: document.getElementById('file-size'),
+    removeFileBtn: document.getElementById('remove-file-btn'),
+    
+    // Form
+    targetSelect: document.getElementById('target-select'),
+    targetDisplay: document.getElementById('target-display'),
+    
+    // Metrics
+    metricRows: document.getElementById('metric-rows'),
+    metricCols: document.getElementById('metric-cols'),
+    metricMissing: document.getElementById('metric-missing'),
+    metricConfidence: document.getElementById('metric-confidence'),
+    
+    // Results
+    accuracyBadge: document.getElementById('accuracy-badge'),
+    predictedValue: document.getElementById('predicted-value'),
+    confidenceFill: document.getElementById('confidence-fill'),
+    riskLevel: document.getElementById('risk-level'),
+    recommendationsList: document.getElementById('recommendations-list'),
+    statsTable: document.getElementById('stats-table'),
+    
+    // Charts
+    lineChartCtx: document.getElementById('line-chart'),
+    barChartCtx: document.getElementById('bar-chart'),
+    pieChartCtx: document.getElementById('pie-chart'),
+    
+    // Status
+    navStatus: document.getElementById('nav-status'),
+    loadingMessage: document.getElementById('loading-message')
+};
+
+let currentFile = null;
+let currentAnalysisData = null;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    setupEventListeners();
+    checkBackendConnection();
+});
+
+function setupEventListeners() {
+    // Navigation
+    app.startBtn.addEventListener('click', goToDashboard);
+    app.newAnalysisBtn.addEventListener('click', resetAnalysis);
+    
+    // File Upload
+    app.uploadZone.addEventListener('click', () => app.fileInput.click());
+    app.uploadZone.addEventListener('dragover', handleDragOver);
+    app.uploadZone.addEventListener('dragleave', handleDragLeave);
+    app.uploadZone.addEventListener('drop', handleDrop);
+    app.fileInput.addEventListener('change', handleFileSelect);
+    app.removeFileBtn.addEventListener('click', removeFile);
+    
+    // Form
+    app.targetSelect.addEventListener('change', validateAnalyzeBtn);
+    app.analyzeBtn.addEventListener('click', submitAnalysis);
+}
+
+// Page Navigation
+function goToDashboard() {
+    app.landingPage.classList.remove('active');
+    app.dashboardPage.classList.add('active');
+}
+
+function resetAnalysis() {
+    app.resultsStep.classList.remove('active');
+    app.uploadStep.classList.add('active');
+    removeFile();
+    currentAnalysisData = null;
+}
+
+// File Handling
+function handleDragOver(e) {
+    e.preventDefault();
+    app.uploadZone.classList.add('dragover');
+}
+
+function handleDragLeave(e) {
+    e.preventDefault();
+    app.uploadZone.classList.remove('dragover');
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    app.uploadZone.classList.remove('dragover');
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        handleFile(files[0]);
+    }
+}
+
+function handleFileSelect(e) {
+    if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+    }
+}
+
+function handleFile(file) {
+    const validExtensions = ['csv', 'xlsx', 'xls'];
+    const extension = file.name.split('.').pop().toLowerCase();
+    
+    if (!validExtensions.includes(extension)) {
+        alert('Please upload a CSV or Excel file');
+        return;
+    }
+    
+    if (file.size > 50 * 1024 * 1024) {
+        alert('File size must be less than 50MB');
+        return;
+    }
+    
+    currentFile = file;
+    app.fileName.textContent = file.name;
+    app.fileSize.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+    app.fileInfo.classList.remove('hidden');
+    app.uploadZone.style.display = 'none';
+    
+    // Extract columns from file (simplified for demo)
+    extractColumns(file);
+}
+
+function removeFile() {
+    currentFile = null;
+    app.fileInfo.classList.add('hidden');
+    app.uploadZone.style.display = '';
+    app.targetSelect.innerHTML = '<option value="">Choose a column...</option>';
+    app.fileInput.value = '';
+    validateAnalyzeBtn();
+}
+
+function extractColumns(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const text = e.target.result;
+            const lines = text.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            app.targetSelect.innerHTML = '<option value="">Choose a column...</option>';
+            headers.forEach(header => {
+                const option = document.createElement('option');
+                option.value = header;
+                option.textContent = header;
+                app.targetSelect.appendChild(option);
+            });
+            
+            updateStatus('File columns loaded');
+        } catch (err) {
+            console.error('Error reading file:', err);
+            updateStatus('Error reading file');
+        }
+    };
+    reader.readAsText(file);
+}
+
+function validateAnalyzeBtn() {
+    app.analyzeBtn.disabled = !currentFile || !app.targetSelect.value;
+}
+
+// API Calls
+async function submitAnalysis() {
+    if (!currentFile || !app.targetSelect.value) return;
+    
+    app.uploadStep.classList.remove('active');
+    app.loadingStep.classList.add('active');
+    
+    const formData = new FormData();
+    formData.append('file', currentFile);
+    formData.append('target_column', app.targetSelect.value);
+    
+    try {
+        updateStatus('Uploading and analyzing...');
+        
+        // Upload and analyze in one request
+        const response = await fetch(`${API_BASE}/upload`, {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Analysis failed');
+        }
+        
+        const results = await response.json();
+        currentAnalysisData = results;
+        displayResults(results);
+        
+        app.loadingStep.classList.remove('active');
+        app.resultsStep.classList.add('active');
+        updateStatus('Analysis complete');
+        
+    } catch (error) {
+        console.error('Error:', error);
+        updateStatus('Error: ' + error.message);
+        app.loadingMessage.textContent = 'Failed to analyze. Please try again.';
+        
+        setTimeout(() => {
+            app.loadingStep.classList.remove('active');
+            app.uploadStep.classList.add('active');
+        }, 2000);
+    }
+}
+
+function displayResults(data) {
+    // Update based on actual backend response structure
+    const profile = data.data_results.profile_summary;
+    const ml = data.ml_results;
+    const viz = data.viz_results;
+    const ai = data.ai_results;
+    
+    // Display target
+    app.targetDisplay.textContent = data.target_column;
+    
+    // Display metrics
+    app.metricRows.textContent = profile.rows.toLocaleString();
+    app.metricCols.textContent = profile.columns;
+    app.metricMissing.textContent = profile.missing_pct + '%';
+    
+    // Display model performance with proper metric name
+    const bestModel = ml.leaderboard[0];
+    const metricName = bestModel.primary_metric;
+    app.metricConfidence.textContent = `${(bestModel.score * 100).toFixed(1)}% (${metricName})`;
+    
+    // Display accuracy badge with more details
+    let badgeText = `Best Model: ${ml.best_model_name} | Task: ${ml.task}`;
+    if (ml.metrics[ml.best_model_name] && ml.metrics[ml.best_model_name].CV_Mean_F1) {
+        const cvMean = ml.metrics[ml.best_model_name].CV_Mean_F1;
+        const cvStd = ml.metrics[ml.best_model_name].CV_Std_F1;
+        badgeText += ` | CV F1: ${(cvMean * 100).toFixed(1)}% ± ${(cvStd * 100).toFixed(1)}%`;
+    }
+    app.accuracyBadge.textContent = badgeText;
+    
+    // For classification, show detailed metrics
+    if (ml.task === 'classification' && ml.y_true_sample && ml.y_pred_sample) {
+        const modelMetrics = ml.metrics[ml.best_model_name];
+        const accuracy = modelMetrics.Accuracy || 0;
+        const precision = modelMetrics.Precision || 0;
+        const recall = modelMetrics.Recall || 0;
+        const f1 = modelMetrics.F1 || 0;
+        
+        app.predictedValue.textContent = `Accuracy: ${(accuracy * 100).toFixed(1)}% | Precision: ${(precision * 100).toFixed(1)}% | Recall: ${(recall * 100).toFixed(1)}% | F1: ${(f1 * 100).toFixed(1)}%`;
+        app.confidenceFill.style.width = (f1 * 100) + '%';
+        app.riskLevel.textContent = f1 > 0.8 ? 'Low' : f1 > 0.6 ? 'Medium' : 'High';
+    } else {
+        app.predictedValue.textContent = 'N/A';
+        app.confidenceFill.style.width = '0%';
+        app.riskLevel.textContent = 'Unknown';
+    }
+    
+    // Display validation report
+    displayValidationReport(data.data_results.validation_report);
+    
+    // Display dataset warnings
+    if (ml.dataset_warnings && ml.dataset_warnings.length > 0) {
+        const warningsList = ml.dataset_warnings.map(warning => `<li class="warning-item">${warning}</li>`).join('');
+        app.recommendationsList.innerHTML += warningsList;
+    }
+    
+    // Display recommendations from viz plan
+    if (viz.recommendations) {
+        const recommendations = viz.recommendations.map(rec => `<li>${rec}</li>`).join('');
+        app.recommendationsList.innerHTML += recommendations;
+    }
+    
+    // Display AI insights
+    if (ai.structured_narrative && ai.structured_narrative.narrative) {
+        const li = document.createElement('li');
+        li.textContent = ai.structured_narrative.narrative;
+        app.recommendationsList.appendChild(li);
+    }
+    
+    // Display statistics from profile
+    displayStatistics(profile, data.target_column);
+    
+    // Display charts as images
+    displayCharts(viz.chart_paths);
+}
+
+function displayStatistics(profile, targetColumn) {
+    let statsHtml = '<div class="stat-row"><span class="stat-label">Task</span><span class="stat-value">Classification</span></div>';
+    
+    if (profile.describe_categorical) {
+        const catStats = profile.describe_categorical[targetColumn];
+        if (catStats) {
+            statsHtml += `
+                <div class="stat-row">
+                    <span class="stat-label">Unique Values</span>
+                    <span class="stat-value">${catStats.unique}</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Most Frequent</span>
+                    <span class="stat-value">${catStats.top}</span>
+                </div>
+            `;
+        }
+    }
+    
+    statsHtml += `
+        <div class="stat-row">
+            <span class="stat-label">Memory Usage</span>
+            <span class="stat-value">${profile.memory_mb} MB</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Duplicates</span>
+            <span class="stat-value">${profile.duplicates}</span>
+        </div>
+    `;
+    
+    app.statsTable.innerHTML = statsHtml;
+}
+
+function displayCharts(chartPaths) {
+    // Clear existing charts
+    const chartsSection = document.querySelector('.charts-section');
+    chartsSection.innerHTML = '<h3>Generated Charts</h3>';
+    
+    if (chartPaths) {
+        Object.entries(chartPaths).forEach(([name, path]) => {
+            if (path && path.endsWith('.png')) {
+                const img = document.createElement('img');
+                img.src = path;
+                img.alt = name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                img.style.maxWidth = '100%';
+                img.style.height = 'auto';
+                img.style.marginBottom = '20px';
+                img.style.border = '1px solid #ddd';
+                img.style.borderRadius = '8px';
+                chartsSection.appendChild(img);
+            }
+        });
+    } else {
+        chartsSection.innerHTML += '<p>No charts generated.</p>';
+    }
+}
+
+// Backend Connection Check
+function displayValidationReport(validationReport) {
+    if (!validationReport) return;
+    
+    let validationHtml = '<div class="validation-section">';
+    
+    // Overall status
+    const statusClass = validationReport.overall_status === 'PASS' ? 'validation-success' : 'validation-error';
+    validationHtml += `<div class="${statusClass}">Data Validation: ${validationReport.overall_status}</div>`;
+    
+    // Dataset info
+    if (validationReport.dataset_info) {
+        const info = validationReport.dataset_info;
+        validationHtml += `<div class="validation-section"><h4>Dataset Summary</h4>`;
+        validationHtml += `<div class="stat-row"><span class="stat-label">Rows</span><span class="stat-value">${info.rows.toLocaleString()}</span></div>`;
+        validationHtml += `<div class="stat-row"><span class="stat-label">Columns</span><span class="stat-value">${info.columns}</span></div>`;
+        validationHtml += `<div class="stat-row"><span class="stat-label">Memory Usage</span><span class="stat-value">${info.memory_mb} MB</span></div>`;
+        validationHtml += `</div>`;
+    }
+    
+    // Validation warnings
+    if (validationReport.warnings && validationReport.warnings.length > 0) {
+        validationHtml += '<div class="validation-section"><h4>Data Quality Warnings</h4>';
+        validationReport.warnings.forEach(warning => {
+            validationHtml += `<div class="warning-item">${warning}</div>`;
+        });
+        validationHtml += '</div>';
+    }
+    
+    // Validation errors
+    if (validationReport.errors && validationReport.errors.length > 0) {
+        validationHtml += '<div class="validation-section"><h4>Validation Errors</h4>';
+        validationReport.errors.forEach(error => {
+            validationHtml += `<div class="validation-error">${error}</div>`;
+        });
+        validationHtml += '</div>';
+    }
+    
+    // Missing data stats
+    if (validationReport.validation_results && validationReport.validation_results.missing_data) {
+        const missing = validationReport.validation_results.missing_data.missing_stats;
+        if (missing) {
+            validationHtml += '<div class="validation-section"><h4>Missing Data Analysis</h4>';
+            validationHtml += `<div class="stat-row"><span class="stat-label">Total Missing Values</span><span class="stat-value">${missing.total_missing.toLocaleString()}</span></div>`;
+            validationHtml += `<div class="stat-row"><span class="stat-label">Missing Percentage</span><span class="stat-value">${missing.total_missing_pct}%</span></div>`;
+            validationHtml += `<div class="stat-row"><span class="stat-label">Columns with Missing Data</span><span class="stat-value">${missing.columns_with_missing}</span></div>`;
+            validationHtml += `</div>`;
+        }
+    }
+    
+    validationHtml += '</div>';
+    
+    // Insert at the beginning of recommendations
+    app.recommendationsList.innerHTML = validationHtml + app.recommendationsList.innerHTML;
+}
+
+async function checkBackendConnection() {
+    try {
+        const response = await fetch(`${API_BASE}/health`, { 
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        
+        if (response.ok) {
+            updateStatus('Backend connected');
+        } else {
+            updateStatus('Backend unavailable');
+        }
+    } catch (error) {
+        console.warn('Backend health check failed:', error);
+        updateStatus('Backend not responding');
+    }
+}
+
+function updateStatus(message) {
+    app.navStatus.textContent = message;
+}
+
+        </script>
+    </body>
+</html>
