@@ -1,0 +1,48 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Git
+.git-credentials
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+bi-platform-backend/venv/
+
+# Environment files (keep examples only)
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Backend runtime artifacts
+bi-platform-backend/uploads/
+bi-platform-backend/app/uploads/
+bi-platform-backend/data/
+bi-platform-backend/app/data/
+bi-platform-backend/__pycache__/
+bi-platform-backend/app/**/__pycache__/
+
+# Node / Frontend
+app/node_modules/
+app/dist/
+app/.wrangler/
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json

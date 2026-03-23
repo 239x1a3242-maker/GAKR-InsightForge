@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Backend API (File-based, no external dependencies)
+  backend:
+    build: ./bi-platform-backend
+    container_name: bi-backend
+    environment:
+      SECRET_KEY: your-secret-key-change-in-production
+      DEBUG: "false"
+      FILE_BASED_DB: "true"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./bi-platform-backend/data:/app/data
+      - ./bi-platform-backend/uploads:/app/uploads
+    networks:
+      - bi_network
+
+  # Frontend (served via Nginx)
+  frontend:
+    build: ./app
+    container_name: bi-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - bi_network
+
+networks:
+  bi_network:
+    driver: bridge
+

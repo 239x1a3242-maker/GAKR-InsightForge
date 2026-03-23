@@ -1,0 +1,26 @@
+# Core Framework
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+email-validator
+
+# Data Processing
+pandas
+numpy
+openpyxl
+xlrd
+python-dateutil
+
+# Machine Learning
+scikit-learn
+
+# Security & Utils
+python-jose[cryptography]
+passlib[argon2]
+argon2-cffi
+python-dotenv
+structlog
+httpx
+aiofiles
