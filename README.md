@@ -536,30 +536,7 @@ Two-container setup: FastAPI backend + Nginx serving the React SPA and proxying 
 
 ---
 
-## ✅ Secure GitHub Push Checklist
 
-Use this checklist before pushing publicly:
-
-1. Keep only sample env files in git:
-  - `bi-platform-backend/.env.example`
-  - `app/.env.example`
-2. Never commit real secrets (`SECRET_KEY`, API keys, production URLs, tokens).
-3. Keep local env files ignored by git (already covered in `.gitignore`).
-4. If any secret was committed previously, rotate it immediately and clean git history.
-5. Verify final staged files before push:
-
-```bash
-git status
-git diff --staged
-```
-
-If `.env` was already tracked in your local history, untrack it once:
-
-```bash
-git rm --cached bi-platform-backend/.env
-```
-
-Then commit and push:
 
 ```bash
 git add .
